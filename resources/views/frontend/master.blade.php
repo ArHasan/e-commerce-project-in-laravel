@@ -155,13 +155,13 @@
                             </li>
                             <li>
                                 <a href="javascript:void(0);"><i class="flaticon-shop"></i> <span>
-                                    {{App\Cart::where('user_ip',request()->ip())->count() }}
+                                    {{App\cart::where('user_ip',request()->ip())->count() }}
                                 </span></a>
                                 <ul class="cart-wrap dropdown_style">
                                     @php
                                         $sub_total=0;
                                     @endphp
-                                    @foreach( App\Cart::where('user_ip',request()->ip())->get() as $cart)
+                                    @foreach( App\cart::where('user_ip',request()->ip())->get() as $cart)
                                     <li class="cart-items">
                                         <div class="cart-img">
                                             <img src="{{ asset('img/thumbnail') }}/{{ App\Product::find($cart->product_id)->product_thumbnail }}" width="100" alt="">
