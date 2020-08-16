@@ -35,9 +35,9 @@
 
 <body>
     <!--Start Preloader-->
-    <div class="preloader-wrap">
+    {{-- <div class="preloader-wrap">
         <div class="spinner"></div>
-    </div>
+    </div> --}}
     <!-- search-form here -->
     <div class="search-area flex-style">
         <span class="closebar">Close</span>
