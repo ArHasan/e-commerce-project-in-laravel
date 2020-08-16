@@ -69,7 +69,7 @@ class PaymentController extends Controller
             'currency' => 'usd',
             "source" => $request->stripeToken,
         ]);
-        return 'ok';
+        return redirect('/');
 
         $orderdata =  Billings::where('shipping_id',$shipping_id)->get();
 

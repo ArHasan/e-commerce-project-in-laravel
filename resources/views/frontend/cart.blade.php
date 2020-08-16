@@ -61,7 +61,7 @@
                                 <td class="ptice">${{$cart->product->product_price}}</td>
                                 <td class="quantity cart-plus-minus">
                                     <input type="text" name="product_quantity[]" value="{{$cart->product_quantity}}" />
-                                </td> 
+                                </td>
                                 @php
                                     $total += $cart->product->product_price * $cart->product_quantity
                                 @endphp
@@ -89,8 +89,14 @@
                                 </ul>
                                 <h3>Cupon</h3>
                                 <p>Enter Your Cupon Code if You Have One</p>
+                                @if(session('expired'))
+                                    <div class="alert alert-danger">{{ session('expired') }}</div>
+                                @endif
+                                @if(session('coupon_error'))
+                                    <div class="alert alert-danger">{{ session('coupon_error') }}</div>
+                                @endif
                                 <div class="cupon-wrap">
-                                    <input class="CouponValue" type="text" placeholder="Cupon Code">
+                                    <input class="CouponValue" type="text" placeholder="Cupon Code" style="text-transform: uppercase;">
                                     <span class="couponbtn">Apply Coupon</span>
                                 </div>
                             </div>
@@ -125,7 +131,7 @@
     $(document).ready(function () {
         $('.remove').click(function () {
             var dataId = $(this).attr("data-id");
-                
+
             Swal.fire({
                 title: 'Are you sure?',
                 text: "You won't be able to revert this!",

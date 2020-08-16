@@ -108,12 +108,12 @@
                                 <li><a href="about.html">About</a></li>
                                 <li>
                                 <a href="{{route('shop')}}">Shop</a>
-                                  
+
                                 </li>
-                            
+
                                 <li>
                                     <a href="{{route('cart')}}">Cart </a>
-                                  
+
                                 </li>
                                 <li><a href="contact.html">Contact</a></li>
                             </ul>
@@ -154,44 +154,34 @@
                                 </ul>
                             </li>
                             <li>
-                                <a href="javascript:void(0);"><i class="flaticon-shop"></i> <span>3</span></a>
+                                <a href="javascript:void(0);"><i class="flaticon-shop"></i> <span>
+                                    {{App\Cart::where('user_ip',request()->ip())->count() }}
+                                </span></a>
                                 <ul class="cart-wrap dropdown_style">
+                                    @php
+                                        $sub_total=0;
+                                    @endphp
+                                    @foreach( App\Cart::where('user_ip',request()->ip())->get() as $cart)
                                     <li class="cart-items">
                                         <div class="cart-img">
-                                            <img src="{{url('/front')}}/images/cart/1.jpg" alt="">
+                                            <img src="{{ asset('img/thumbnail') }}/{{ App\Product::find($cart->product_id)->product_thumbnail }}" width="100" alt="">
                                         </div>
                                         <div class="cart-content">
-                                            <a href="cart.html">Pure Nature Product</a>
-                                            <span>QTY : 1</span>
-                                            <p>$35.00</p>
+                                            <a href="cart.html">{{ App\Product::find($cart->product_id)->product_name }}</a>
+                                            <span>QTY : {{ $cart->product_quantity }}</span>
+                                            <p>${{ App\Product::find($cart->product_id)->product_price * $cart->product_quantity}}</p>
+                                            @php
+                                                $sub_total=$sub_total+App\Product::find($cart->product_id)->product_price * $cart->product_quantity;
+                                            @endphp
                                             <i class="fa fa-times"></i>
                                         </div>
                                     </li>
-                                    <li class="cart-items">
-                                        <div class="cart-img">
-                                            <img src="{{url('/front')}}/images/cart/3.jpg" alt="">
-                                        </div>
-                                        <div class="cart-content">
-                                            <a href="cart.html">Pure Nature Product</a>
-                                            <span>QTY : 1</span>
-                                            <p>$35.00</p>
-                                            <i class="fa fa-times"></i>
-                                        </div>
-                                    </li>
-                                    <li class="cart-items">
-                                        <div class="cart-img">
-                                            <img src="{{url('/front')}}/images/cart/2.jpg" alt="">
-                                        </div>
-                                        <div class="cart-content">
-                                            <a href="cart.html">Pure Nature Product</a>
-                                            <span>QTY : 1</span>
-                                            <p>$35.00</p>
-                                            <i class="fa fa-times"></i>
-                                        </div>
-                                    </li>
-                                    <li>Subtotol: <span class="pull-right">$70.00</span></li>
+                                    @endforeach
+                                    <li>Subtotol: <span class="pull-right">${{ $sub_total }}</span></li>
                                     <li>
-                                        <button>Check Out</button>
+                                        <a href="{{ route('cart') }}">
+                                            <button>Check Out</button>
+                                        </a>
                                     </li>
                                 </ul>
                             </li>
@@ -316,7 +306,7 @@
     </div>
     <!-- .footer-area end -->
     <!-- Modal area start -->
-   
+
     <!-- Modal area start -->
     <!-- jquery latest version -->
     <script src="{{url('/front')}}/js/vendor/jquery-2.2.4.min.js"></script>

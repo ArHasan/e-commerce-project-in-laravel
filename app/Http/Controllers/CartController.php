@@ -23,7 +23,7 @@ class CartController extends Controller
                 $validity = Coupon::where('coupon_code', $coupon)->first()->coupon_validity;
 
                 if (Carbon::now()->format('Y-m-d') <= $validity) {
-                    
+
                     $user_ip = $_SERVER['REMOTE_ADDR'];
                     $carts = Cart::with('product')->where('user_ip', $user_ip)->get();
                     $discount = Coupon::where('coupon_code', $coupon)->first()->coupon_discount;
@@ -31,10 +31,10 @@ class CartController extends Controller
                     return view('frontend.cart', compact('carts','discount'));
 
                 } else {
-                    return 'expird';
+                    return back()->with('expired','Coupon date is expired');
                 }
             } else {
-                return 'ni';
+                return back()->with('coupon_error','This Coupon is Not Valied');
             }
 
         }
@@ -58,6 +58,6 @@ class CartController extends Controller
             ]);
         }
 
-        return 'update';
+        return back();
     }
 }
