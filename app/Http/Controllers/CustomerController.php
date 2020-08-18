@@ -6,9 +6,11 @@ use Illuminate\Http\Request;
 
 class CustomerController extends Controller
 {
-   
+
 
     function index(){
-        return view('customer');
+        return redirect('/');
+        // return view('customer');
+
     }
 }

@@ -127,7 +127,7 @@
                         @enderror
                         <p>Password *</p>
                         <input id="password" type="password"
-                            class="form-control @error('password') is-invalid @enderror" name="password" 
+                            class="form-control @error('password') is-invalid @enderror" name="password"
                             autocomplete="new-password">
 
                         @error('password')
@@ -142,9 +142,9 @@
                             <button type="submit" >
                                 {{ __('Register') }}
                             </button>
-                        
+
                         <div class="text-center">
-                            <a href="login.html">Or Login</a>
+                            <a href="{{ route('login') }}">Or Login</a>
                         </div>
                     </div>
                 </form>

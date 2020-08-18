@@ -63,11 +63,11 @@ class PaymentController extends Controller
         }
 
         \Stripe\Stripe::setApiKey('sk_test_51GugviJIXUh75oNJpGwmevLZLIR46LIQmvWPBmjXIHR443YrfjmntsOkvIzavXJFmSHJQ4jn8pD4grWjwmsXuztg00RdvGW3zB');
-
         \Stripe\Charge::create([
             'amount' => $sub_total *100,
             'currency' => 'usd',
             "source" => $request->stripeToken,
+            "description" => "payment from ArHasan",
         ]);
         return redirect('/');
 
