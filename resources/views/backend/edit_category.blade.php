@@ -1,25 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('backend.master')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-    <title>Add-Category</title>
-</head>
+@section('content')
 
-<body>
-
-    <div class="container ">
-        <div class="row justify-content-md-center">
-            <div class="col-md-8 mt-5">
-                <div class="card bg-light mb-3">
-                    <div class="card-header bg-primary text-center">
-                        <h4>EditCategory</h4>
+<div class="content">
+    <div class="container-fluid">
+        <div class="container ">
+            <div class="row justify-content-md-center">
+                <div class="col-md-12 mt-5">
+                    <div class="card bg-light mb-3">
+                        <div class="card-header bg-primary text-center">
+                        <h4>Edit Category</h4>
                     </div>
                     <div class="card-body">
                         @if(session('success'))
@@ -34,7 +24,7 @@
                         <form action="{{url('/update-category-post')}}" method="post">
                             @csrf
                         <input type="hidden" value="{{$category->id}}" name="category_id">
-                          
+
                             <div class="form-group">
                                 <label for="name">Name</label>
                             <input type="text" name="category_name" value="{{$category->category_name}}" class="form-control @error('category_name') is-invalid @enderror"
@@ -52,6 +42,4 @@
             </div>
         </div>
     </div>
-</body>
-
-</html>
+@endsection

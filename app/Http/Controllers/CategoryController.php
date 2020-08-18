@@ -15,7 +15,7 @@ class CategoryController extends Controller
     function category(){
         return view('backend.category');
     }
-    
+
     function CategoryPost(Request $request){
         // $cat = new category;
         // $cat->category_name = $request->name;
@@ -25,18 +25,18 @@ class CategoryController extends Controller
         $request->validate([
             'category_name' => ['required','min:3','max:30','unique:categories'],
         ],[ 'category_name.required' => 'তুমি ইনপুট দেও নি ?',
-            'category_name.min' =>'Your Enter Uper then 3 latter'    
-        ]);                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
+            'category_name.min' =>'Your Enter Uper then 3 latter'
+        ]);
         Category::insert([
             'category_name' =>$request->category_name,
-            'created_at' =>Carbon::now(), 
+            'created_at' =>Carbon::now(),
             ]);
         return back()->with('success','Added Category Successfully');
     }
 
     function CategoryView(){
         // $category = Category::all();
-        $category = Category::orderBy('category_name','asc')->paginate(3);;
+        $category = Category::orderBy('category_name','asc')->paginate(10);;
         return view('backend.view_category',compact('category'));
     }
 
@@ -61,7 +61,6 @@ class CategoryController extends Controller
         ]);
         return redirect('view-category-list')->with('update','Updated data successfully');
    }
-        
+
  }
 
- 

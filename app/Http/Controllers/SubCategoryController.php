@@ -15,7 +15,7 @@ class SubCategoryController extends Controller
     function SubCategory(){
      $categories =  Category::orderBy('category_name','asc')->get();
         return view('backend.subcategory.subcategory',compact('categories'));
-    } 
+    }
     function SubCategoryPost(Request $request){
         SubCategory::insert([
             'subcategory_name' =>$request->subcategory_name,
@@ -23,25 +23,25 @@ class SubCategoryController extends Controller
             'created_at' =>Carbon::now(),
         ]);
         return back()->with('success','Sub Category Added Successfully');
-    } 
+    }
     function SubCategoryView(){
         $scount = SubCategory::count();
         // $categories = SubCategory::orderBy('subcategory_name','asc')->paginate(10);
         $categories = SubCategory::with('get_category')->paginate(10);
         return view('backend.subcategory.subcategory_view',compact('categories','scount'));
-    } 
+    }
     function SubCategoryDelete($id){
         SubCategory::findOrFail($id)->delete();
         return back();
-    } 
+    }
     function SubCategoryEdit(){
-        SubCategory::all();
-        return view('backend.subcategory');
-    } 
+        $categories = SubCategory::all();
+        return view('backend.subcategory',compact('categories'));
+    }
     function SubCategoryUpdate(){
         SubCategory::all();
         return view('backend.subcategory');
-    } 
+    }
 
     function SubCategoryDeleted(){
         $scount = SubCategory::onlyTrashed()->count();

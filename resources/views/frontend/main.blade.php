@@ -76,38 +76,6 @@
                             </div>
                         </div>
                     </div>
-                    <div class="featured-wrap">
-                        <div class="featured-img">
-                            <img src="{{url('/front')}}/images/featured/7.jpg" alt="">
-                            <div class="featured-content">
-                                <a href="shop.html">Mustard Oil</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="featured-wrap">
-                        <div class="featured-img">
-                            <img src="{{url('/front')}}/images/featured/8.jpg" alt="">
-                            <div class="featured-content">
-                                <a href="shop.html">Olive Oil</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="featured-wrap">
-                        <div class="featured-img">
-                            <img src="{{url('/front')}}/images/featured/6.jpg" alt="">
-                            <div class="featured-content">
-                                <a href="shop.html">Pure Honey</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="featured-wrap">
-                        <div class="featured-img">
-                            <img src="{{url('/front')}}/images/featured/8.jpg" alt="">
-                            <div class="featured-content">
-                                <a href="shop.html">Olive Oil</a>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -307,7 +275,7 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                         <div class="modal-body d-flex">
-                            <div class="product-single-img w-50"> 
+                            <div class="product-single-img w-50">
                                 <img src="{{url('img/thumbnail').'/'.$items->product_thumbnail}}" alt="{{$items->product_name}}">
                             </div>
                             <div class="product-single-content w-50">
@@ -349,8 +317,8 @@
                 </div>
             </div>
             @endforeach
-           
-           
+
+
             <li class="col-12 text-center">
                 <a class="loadmore-btn" href="javascript:void(0);">Load More</a>
             </li>
